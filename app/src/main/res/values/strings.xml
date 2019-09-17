@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SoulLinkHelper</string>
+    <string name="pokemon_json">PokemonJson</string>
 </resources>

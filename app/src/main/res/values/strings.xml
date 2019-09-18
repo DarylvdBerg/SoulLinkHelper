@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">SoulLinkHelper</string>
-    <string name="pokemon_json">PokemonJson</string>
+    <string name="name_player_1">Name Player 1</string>
+    <string name="name_player_2">Name Player 2</string>
+    <string name="new_game">New Game</string>
+    <string name="start_game">Start Game</string>
+    <string name="game_name">Game Name</string>
+    <string name="description_sprite_p1">Sprite of player one</string>
+    <string name="description_sprite_p2">Sprite of player two</string>
 </resources>

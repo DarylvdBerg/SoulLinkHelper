@@ -2,29 +2,32 @@ package com.example.soullinkhelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.soullinkhelper.database.DatabaseHelper;
 import com.example.soullinkhelper.service.PokemonService;
 
-import java.io.File;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private ProgressDialog p;
+    private TextView loadText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.SplashScreen);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        loadText = findViewById(R.id.waitText);
+
         DatabaseHelper helper = DatabaseHelper.getHelper(this);
         getPokemonFromApi task = new getPokemonFromApi(this);
+
 
         if(helper.checkIfDbEmpty(getResources().getInteger(R.integer.pokemon_api_call_count))){
             helper.clearDatabase();
@@ -45,20 +48,14 @@ public class SplashScreen extends AppCompatActivity {
         private Context ctx;
         private PokemonService service;
 
-        public getPokemonFromApi(Context ctx){
+        private getPokemonFromApi(Context ctx){
             this.ctx = ctx;
         }
 
         @Override
         protected void onPreExecute(){
-            // TODO: Show loading animation with text
+            loadText.setVisibility(View.VISIBLE);
             super.onPreExecute();
-            p = new ProgressDialog(SplashScreen.this);
-            p.setMessage("Please wait...It is downloading");
-            p.setIndeterminate(false);
-            p.setCancelable(false);
-            p.show();
-            Log.i("Processing", "Getting the pokemans");
         }
 
         @Override
@@ -70,7 +67,7 @@ public class SplashScreen extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void v) {
-            p.hide();
+            loadText.setVisibility(View.GONE);
             switchIntent();
         }
 

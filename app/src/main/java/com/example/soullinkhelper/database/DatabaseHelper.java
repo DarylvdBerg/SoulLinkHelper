@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static SQLiteDatabase mSQLDB;
@@ -34,6 +33,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor query(String table, String[] columns, String selection,
                         String[] selectArgs, String groupBy, String having, String orderBy){
         return mSQLDB.query(table, columns, selection, selectArgs, groupBy, having, orderBy);
+    }
+
+    public boolean checkIfDbEmpty(int pokemonAmount){
+        String count = "SELECT COUNT(*) FROM "+DatabaseInfo.PokemonTable.POKEMON_TABLE ;
+        Cursor c = mSQLDB.rawQuery(count, null);
+        c.moveToFirst();
+        int counter = c.getInt(0);
+        c.close();
+        return counter < pokemonAmount;
+    }
+
+    public void clearDatabase(){
+        mSQLDB.execSQL("DELETE FROM "+DatabaseInfo.PokemonTable.POKEMON_TABLE);
     }
 
     @Override

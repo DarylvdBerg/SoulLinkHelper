@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="regions">
+        <item>Kanto</item>
+        <item>Johto</item>
+        <item>Hoenn</item>
+    </string-array>
+
     <string-array name="kantoRoutes">
         <item>Route 1</item>
         <item>Route 2</item>

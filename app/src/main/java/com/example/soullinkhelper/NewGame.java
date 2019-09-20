@@ -3,12 +3,11 @@ package com.example.soullinkhelper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
-import com.example.soullinkhelper.Models.Game;
+import com.example.soullinkhelper.models.Game;
 
 public class NewGame extends AppCompatActivity {
 

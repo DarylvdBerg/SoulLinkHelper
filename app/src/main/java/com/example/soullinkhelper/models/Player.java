@@ -1,4 +1,4 @@
-package com.example.soullinkhelper.Models;
+package com.example.soullinkhelper.models;
 
 import android.widget.ImageView;
 

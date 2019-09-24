@@ -1,8 +1,9 @@
-package com.example.soullinkhelper.Models;
+package com.example.soullinkhelper.models;
+
+import com.example.soullinkhelper.enums.State;
 
 public class Pair {
 
-    enum State{DEAD, ALIVE}
     private State state;
     private Pokemon pokemon1;
     private Pokemon pokemon2;
@@ -13,6 +14,18 @@ public class Pair {
         this.pokemon2 = pokemon2;
         this.route = route;
         state = State.ALIVE;
+    }
+
+    public Pokemon getPokemon1() {
+        return pokemon1;
+    }
+
+    public Pokemon getPokemon2() {
+        return pokemon2;
+    }
+
+    public String getRoute() {
+        return route;
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.example.soullinkhelper.Models;
+package com.example.soullinkhelper.models;
 
 import android.widget.ImageView;
 
@@ -15,11 +15,10 @@ public class Pokemon {
     public Pokemon(int id, String name){
         this.id = id;
         this.name = name;
+    }
 
-        /*
-        types from JSON file
-        sprite from JSON file
-         */
+    public String getName(){
+        return this.name;
     }
 
     public void giveNickname(String nickname){

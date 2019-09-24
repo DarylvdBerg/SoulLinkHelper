@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -69,7 +70,7 @@ public class SplashScreen extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             service = new PokemonService(ctx);
-            service.savePokemons(getResources().getInteger(R.integer.pokemon_api_call_count));
+            service.savePokemons(getResources().getInteger(R.integer.pokemon_api_call_count), (ProgressBar)findViewById(R.id.progressBarSplashScreen));
             return null;
         }
 

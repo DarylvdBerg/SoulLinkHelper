@@ -11,7 +11,7 @@ public class GameManager extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme);
+        setTheme(R.style.GameManagerScreen);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_manager);
     }
@@ -19,13 +19,13 @@ public class GameManager extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        Button newGameButton = findViewById(R.id.newGameButton);
-        newGameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent  newGameIntent = new Intent(GameManager.this, NewGame.class);
-                startActivity(newGameIntent);
-            }
-        });
+//        Button newGameButton = findViewById(R.id.newGameButton);
+//        newGameButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent  newGameIntent = new Intent(GameManager.this, NewGame.class);
+//                startActivity(newGameIntent);
+//            }
+//        });
     }
 }

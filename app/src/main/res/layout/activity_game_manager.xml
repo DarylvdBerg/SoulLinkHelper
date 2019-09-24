@@ -6,19 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".GameManager">
 
-    <Button
-        android:id="@+id/newGameButton"
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="138dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="545dp"
-        android:text="@string/new_game"
+        android:layout_marginTop="215dp"
+        android:layout_marginBottom="260dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:srcCompat="@mipmap/game_manager_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

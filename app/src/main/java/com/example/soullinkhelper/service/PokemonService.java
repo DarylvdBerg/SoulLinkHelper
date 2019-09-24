@@ -2,6 +2,9 @@ package com.example.soullinkhelper.service;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.view.View;
+import android.widget.ProgressBar;
+
 import com.example.soullinkhelper.database.DatabaseHelper;
 import com.example.soullinkhelper.database.DatabaseInfo;
 import java.util.List;
@@ -20,7 +23,7 @@ public class PokemonService {
         api = new PokeApiClient();
     }
 
-    public void savePokemons(int pokemons){
+    public void savePokemons(int pokemons, ProgressBar pBar){
         for(int i = 1; i <= pokemons; i ++){
             Pokemon pokemon = api.getPokemon(i);
             String pokemonName = pokemon.getName();
@@ -28,6 +31,7 @@ public class PokemonService {
             String sprites = pokemon.getSprites().getFrontDefault();
 
             writePokemonToDb(pokemonName, types, sprites);
+            pBar.setProgress(i);
         }
     }
 

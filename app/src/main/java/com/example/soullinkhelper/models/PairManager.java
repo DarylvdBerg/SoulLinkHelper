@@ -24,6 +24,7 @@ public class PairManager {
 
     public void addPair(Pair pair){
         pairList.add(pair);
+        //TODO: Send to fireBase
     }
 
     public void removePair(Pair pair){

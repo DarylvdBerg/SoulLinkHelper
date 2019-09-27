@@ -13,8 +13,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Game Manager Screen Theme. -->
+    <style name="GameManagerScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/game_manager_background</item>
+    </style>
+
+    <!-- New Game Screen Theme. -->
     <style name="NewGameScreen" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@mipmap/new_game_screen</item>
+        <item name="android:windowBackground">@mipmap/empty_new_game_screen</item>
     </style>
 
 </resources>

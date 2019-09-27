@@ -3,7 +3,13 @@ package com.example.soullinkhelper.service;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.widget.ProgressBar;
+import android.database.Cursor;
 import android.util.Log;
+
+import android.view.View;
+import android.widget.ProgressBar;
+
 
 import com.example.soullinkhelper.database.DatabaseHelper;
 import com.example.soullinkhelper.database.DatabaseInfo;
@@ -36,7 +42,7 @@ public class PokemonService {
      * @param pokemons entry of pokemon according to the pokedex
      * @author Daryl
      */
-    public void savePokemons(int pokemons){
+    public void savePokemons(int pokemons, ProgressBar pBar){
         for(int i = 1; i <= pokemons; i ++){
             Pokemon pokemon = api.getPokemon(i);
             String pokemonName = pokemon.getName();
@@ -44,6 +50,7 @@ public class PokemonService {
             String sprites = pokemon.getSprites().getFrontDefault();
 
             writePokemonToDb(pokemonName, types, sprites);
+            pBar.setProgress(i);
         }
     }
 

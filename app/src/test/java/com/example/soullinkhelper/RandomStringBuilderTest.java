@@ -11,10 +11,8 @@ public class RandomStringBuilderTest {
 
     @Test
     public void randomStringSize() {
-        for (int i = 0; i < 100; i++){
-            String res = RandomStringBuilder.randomString(32);
-            System.out.println(res);
-            assertEquals(32, res.length());
-        }
+        String res = RandomStringBuilder.randomString(32);
+        System.out.println(res);
+        assertEquals(32, res.length());
     }
 }

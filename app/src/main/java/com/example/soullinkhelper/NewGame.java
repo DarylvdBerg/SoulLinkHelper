@@ -58,11 +58,11 @@ public class NewGame extends AppCompatActivity {
     }
 
     //Test pair, remove this
-    public void makePair(){
-        Pokemon pokemon = new Pokemon("Charmander");
-        Pair pair = new Pair(pokemon, pokemon, "Route 1");
-        game.addPair(pair);
-        FirebaseService.getFirebaseServiceInstance().savePair(game.getName(), game.getPairs());
-    }
+//    public void makePair(){
+//        Pokemon pokemon = new Pokemon("Charmander");
+//        Pair pair = new Pair(pokemon, pokemon, "Route 1");
+//        game.addPair(pair);
+//        FirebaseService.getFirebaseServiceInstance().savePair(game.getName(), game.getPairs());
+//    }
 
 }

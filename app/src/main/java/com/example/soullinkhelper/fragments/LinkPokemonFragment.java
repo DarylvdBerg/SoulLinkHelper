@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.soullinkhelper.R;
+import com.example.soullinkhelper.dao.PokemonDAO;
 import com.example.soullinkhelper.service.PokemonService;
 
 import java.util.ArrayList;
@@ -25,16 +26,18 @@ public class LinkPokemonFragment extends Fragment {
     private TextView pokemonType;
     private Spinner spinner;
     private ArrayList<String> pokemonNameList;
-    private PokemonService service;
     private String sprite;
     private EditText pokemonNickname;
+
+    private PokemonDAO pokemonDAO;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle){
         View v = inflater.inflate(R.layout.link_pokemon_fragment, container, false);
 
-        service = new PokemonService(v.getContext());
-        pokemonNameList = service.getAllPokemonNamesFromDb();
+        pokemonDAO = new PokemonDAO(v.getContext());
+
+        pokemonNameList = pokemonDAO.getAllPokemonNamesFromDb();
 
         spinner = v.findViewById(R.id.pokemonSearch);
 
@@ -50,8 +53,8 @@ public class LinkPokemonFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                ArrayList<String> types = service.getPokemonTypesDb(pokemonNameList.get(i).toLowerCase());
-                sprite = service.getPokemonSpriteFromDb(pokemonNameList.get(i).toLowerCase());
+                ArrayList<String> types = pokemonDAO.getPokemonTypesDb(pokemonNameList.get(i).toLowerCase());
+                sprite = pokemonDAO.getPokemonSpriteFromDb(pokemonNameList.get(i).toLowerCase());
                 pokemonType.setText(types.get(0));
                 if(types.size() > 1){
                     pokemonType.setText(types.get(0)+" / "+types.get(1));

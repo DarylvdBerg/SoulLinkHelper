@@ -17,7 +17,31 @@ public class Game {
         this.region = region;
         this.pairs = new ArrayList<>();
         playerOne = new Player(namePlayerOne, spritePlayerOne);
-        playerOne = new Player(namePlayerTwo, spritePlayerTwo);
+        playerTwo = new Player(namePlayerTwo, spritePlayerTwo);
+        pairs = new ArrayList<>();
     }
 
+    public void addPair(Pair pair){
+        pairs.add(pair);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<Pair> getPairs() {
+        return pairs;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public Player getPlayerOne() {
+        return playerOne;
+    }
+
+    public Player getPlayerTwo() {
+        return playerTwo;
+    }
 }

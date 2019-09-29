@@ -16,6 +16,10 @@ public class Pair {
         state = State.ALIVE;
     }
 
+    public State getState() {
+        return state;
+    }
+
     public Pokemon getPokemon1() {
         return pokemon1;
     }

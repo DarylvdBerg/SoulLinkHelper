@@ -3,15 +3,26 @@ package com.example.soullinkhelper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.soullinkhelper.models.Game;
+import com.example.soullinkhelper.models.Pair;
+import com.example.soullinkhelper.models.Pokemon;
+import com.example.soullinkhelper.service.FirebaseService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NewGame extends AppCompatActivity {
 
     private int maxSprites = 4;
+
+    Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +46,23 @@ public class NewGame extends AppCompatActivity {
     }
 
     public void makeGame(View view){
-        String gameName = findViewById(R.id.gameNameEditText).toString();
+        String gameName = ((EditText)findViewById(R.id.gameNameEditText)).getText().toString();
         String region = ((Spinner)findViewById(R.id.regionSpinner)).getSelectedItem().toString();
-        String playerNameOne = findViewById(R.id.namePlayerOne).toString();
-        String playerNameTwo = findViewById(R.id.namePlayerTwo).toString();
-        ImageView spritePlayerOne = findViewById(R.id.characterSpritePlayerOne);
-        ImageView spritePlayerTwo = findViewById(R.id.characterSpritePlayerTwo);
-        Game game = new Game(gameName, region, playerNameOne, playerNameTwo, spritePlayerOne, spritePlayerTwo);
+        String playerNameOne = ((EditText)findViewById(R.id.namePlayerOne)).getText().toString();
+        String playerNameTwo = ((EditText)findViewById(R.id.namePlayerTwo)).getText().toString();
+        ImageView playerSpriteOne = ((ImageView)findViewById(R.id.characterSpritePlayerOne));
+        ImageView playerSpriteTwo = ((ImageView)findViewById(R.id.characterSpritePlayerTwo));
+        game = new Game(gameName, region, playerNameOne, playerNameTwo, playerSpriteOne, playerSpriteTwo);
+
+        FirebaseService.getFirebaseServiceInstance().saveGame(game);
+    }
+
+    //Test pair, remove this
+    public void makePair(){
+        Pokemon pokemon = new Pokemon("Charmander");
+        Pair pair = new Pair(pokemon, pokemon, "Route 1");
+        game.addPair(pair);
+        FirebaseService.getFirebaseServiceInstance().savePair(game.getName(), game.getPairs());
     }
 
 }

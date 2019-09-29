@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 public class Game {
-
+    private String gameId;
     private String name;
     private String region;
     private ArrayList<Pair> pairs;
@@ -19,6 +19,14 @@ public class Game {
         playerOne = new Player(namePlayerOne, spritePlayerOne);
         playerTwo = new Player(namePlayerTwo, spritePlayerTwo);
         pairs = new ArrayList<>();
+    }
+
+    public String getGameId(){
+        return this.gameId;
+    }
+
+    public void setGameId(String gameId){
+        this.gameId = gameId;
     }
 
     public void addPair(Pair pair){

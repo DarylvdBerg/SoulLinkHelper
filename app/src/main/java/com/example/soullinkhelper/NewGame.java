@@ -3,24 +3,22 @@ package com.example.soullinkhelper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.example.soullinkhelper.dao.GameDAO;
 import com.example.soullinkhelper.models.Game;
 import com.example.soullinkhelper.models.Pair;
 import com.example.soullinkhelper.models.Pokemon;
 import com.example.soullinkhelper.service.FirebaseService;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import com.example.soullinkhelper.utility.RandomStringBuilder;
 
 public class NewGame extends AppCompatActivity {
 
     private int maxSprites = 4;
+    private GameDAO gameDao;
 
     Game game;
 
@@ -29,6 +27,7 @@ public class NewGame extends AppCompatActivity {
         setTheme(R.style.NewGameScreen);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
+        gameDao = new GameDAO(this);
     }
 
     public void switchSprite(View view){
@@ -53,7 +52,8 @@ public class NewGame extends AppCompatActivity {
         ImageView playerSpriteOne = ((ImageView)findViewById(R.id.characterSpritePlayerOne));
         ImageView playerSpriteTwo = ((ImageView)findViewById(R.id.characterSpritePlayerTwo));
         game = new Game(gameName, region, playerNameOne, playerNameTwo, playerSpriteOne, playerSpriteTwo);
-
+        game.setGameId(RandomStringBuilder.randomString(32));
+        gameDao.writeGameToDb(game.getGameId());
         FirebaseService.getFirebaseServiceInstance().saveGame(game);
     }
 

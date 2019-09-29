@@ -13,7 +13,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.soullinkhelper.database.DatabaseHelper;
+import com.example.soullinkhelper.models.Game;
+import com.example.soullinkhelper.service.FirebaseService;
 import com.example.soullinkhelper.service.PokemonService;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SplashScreen extends AppCompatActivity {

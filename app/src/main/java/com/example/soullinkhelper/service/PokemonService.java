@@ -1,6 +1,5 @@
 package com.example.soullinkhelper.service;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.widget.ProgressBar;
@@ -11,6 +10,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 
+import com.example.soullinkhelper.dao.PokemonDAO;
 import com.example.soullinkhelper.database.DatabaseHelper;
 import com.example.soullinkhelper.database.DatabaseInfo;
 
@@ -29,12 +29,14 @@ import me.sargunvohra.lib.pokekotlin.model.PokemonType;
 public class PokemonService {
     private DatabaseHelper helper;
     private PokeApi api;
+    private PokemonDAO pokemonDAO;
     private Context ctx;
 
     public PokemonService(Context ctx) {
         this.ctx = ctx;
         helper = DatabaseHelper.getHelper(ctx);
         api = new PokeApiClient();
+        pokemonDAO = new PokemonDAO(ctx);
     }
 
     /**
@@ -49,7 +51,7 @@ public class PokemonService {
             List<PokemonType> types = pokemon.getTypes();
             String sprites = pokemon.getSprites().getFrontDefault();
 
-            writePokemonToDb(pokemonName, types, sprites);
+            pokemonDAO.writePokemonToDb(pokemonName, types, sprites);
             pBar.setProgress(i);
         }
     }

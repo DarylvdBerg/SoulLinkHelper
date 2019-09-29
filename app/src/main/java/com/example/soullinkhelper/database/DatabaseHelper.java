@@ -56,11 +56,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 DatabaseInfo.PokemonColumn.TYPE_1+" TEXT,"+
                 DatabaseInfo.PokemonColumn.TYPE_2+" TEXT,"+
                 DatabaseInfo.PokemonColumn.SPRITE+" TEXT);");
+
+        db.execSQL("CREATE TABLE "+DatabaseInfo.GameColumn.GAME_ID+"("+
+                BaseColumns._ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                DatabaseInfo.GameColumn.GAME_ID+" TEXT);");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS "+DatabaseInfo.PokemonTable.POKEMON_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS "+DatabaseInfo.GameTable.GAME_TABLE);
         onCreate(db);
 
     }

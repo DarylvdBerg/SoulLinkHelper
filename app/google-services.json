@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "690081675357",
+    "firebase_url": "https://soullinkhelper.firebaseio.com",
+    "project_id": "soullinkhelper",
+    "storage_bucket": "soullinkhelper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690081675357:android:48758bb21d1216984d75b4",
+        "android_client_info": {
+          "package_name": "com.example.soullinkhelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690081675357-fcc8gtq588rttm03e5tcar7cl3tq657r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChDaTN7RbDQF6gPSfBdR-MBUqbDJZAPUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "690081675357-fcc8gtq588rttm03e5tcar7cl3tq657r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,12 +12,14 @@ public class Pokemon {
     private ArrayList<String> types;
     private String nickname;
     private String sprite;
+    private Player caughtBy;
 
-    public Pokemon(String name, ArrayList<String> types, String nickname, String sprite){
+    public Pokemon(String name, ArrayList<String> types, String nickname, String sprite, Player caughtBy){
         this.name = name;
         this.types = types;
         this.nickname = nickname;
         this.sprite = sprite;
+        this.caughtBy = caughtBy;
     }
 
     public String getName(){

@@ -5,8 +5,8 @@
 
     <ImageView
         android:id="@+id/pokemonImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
         android:contentDescription="Pokemon sprite" />
 
@@ -32,6 +32,12 @@
         android:layout_gravity="center"
         android:inputType="textPersonName"
         android:hint="Nickname" />
+
+    <Spinner
+        android:id="@+id/caughtBy"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content" />
 
     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
         android:id="@+id/pokemonSearch"

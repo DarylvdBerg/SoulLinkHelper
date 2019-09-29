@@ -22,4 +22,9 @@ public class Player {
     public ImageView getSprite() {
         return sprite;
     }
+
+    @Override
+    public String toString(){
+        return this.getName();
+    }
 }

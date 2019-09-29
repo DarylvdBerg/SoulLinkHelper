@@ -16,18 +16,24 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.soullinkhelper.R;
 import com.example.soullinkhelper.dao.PokemonDAO;
+import com.example.soullinkhelper.models.Player;
+import com.example.soullinkhelper.models.PlayerManager;
 import com.example.soullinkhelper.service.PokemonService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LinkPokemonFragment extends Fragment {
 
     private ImageView pokemonSprite;
     private TextView pokemonType;
     private Spinner spinner;
+    private Spinner caughtBySpinner;
     private ArrayList<String> pokemonNameList;
+    private ArrayList<Player> playerList;
     private String sprite;
     private EditText pokemonNickname;
+    private Player caughtBy;
 
     private PokemonDAO pokemonDAO;
 
@@ -38,13 +44,19 @@ public class LinkPokemonFragment extends Fragment {
         pokemonDAO = new PokemonDAO(v.getContext());
 
         pokemonNameList = pokemonDAO.getAllPokemonNamesFromDb();
+        playerList = PlayerManager.getInstance().getPlayerList();
 
         spinner = v.findViewById(R.id.pokemonSearch);
+        caughtBySpinner = v.findViewById(R.id.caughtBy);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_item, pokemonNameList);
+        ArrayAdapter<Player> caughtByAdapter = new ArrayAdapter<Player>(v.getContext(),
+                android.R.layout.simple_list_item_1, playerList);
 
         spinner.setAdapter(adapter);
         spinner.setSelection(0);
+
+        caughtBySpinner.setAdapter(caughtByAdapter);
 
         pokemonSprite = v.findViewById(R.id.pokemonImage);
         pokemonType = v.findViewById(R.id.pokemonType);
@@ -72,6 +84,18 @@ public class LinkPokemonFragment extends Fragment {
             }
         });
 
+        caughtBySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                caughtBy = playerList.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         return v;
     }
 
@@ -88,6 +112,10 @@ public class LinkPokemonFragment extends Fragment {
         }
 
         return types;
+    }
+
+    public Player getCaughtBy(){
+        return this.caughtBy;
     }
 
     public String getPokemonSpirte(){

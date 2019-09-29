@@ -48,12 +48,14 @@ public class LinkPokemon extends AppCompatActivity {
             Pokemon p1 = new Pokemon(
                     fragment_1.getPokemonName(),
                     fragment_1.getPokemonType(),
-                    fragment_1.getPokemonNickname()
+                    fragment_1.getPokemonNickname(),
+                    fragment_1.getPokemonSpirte()
                     );
             Pokemon p2 = new Pokemon(
                     fragment_2.getPokemonName(),
                     fragment_2.getPokemonType(),
-                    fragment_2.getPokemonNickname()
+                    fragment_2.getPokemonNickname(),
+                    fragment_2.getPokemonSpirte()
             );
 
             linkNewPair(p1, p2, String.valueOf(spinner.getSelectedItemId()));

@@ -30,11 +30,6 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-
-        //REMOVE
-        FirebaseService.getFirebaseServiceInstance().getGames();
-
-
         loadText = findViewById(R.id.waitText);
         loading = findViewById(R.id.loading);
 

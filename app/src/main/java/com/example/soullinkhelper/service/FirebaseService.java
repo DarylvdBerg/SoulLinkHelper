@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class FirebaseService {
 
-    public static FirebaseService firebaseService;
+    private static FirebaseService firebaseService;
 
     public static FirebaseService getFirebaseServiceInstance(){
         if (firebaseService == null){
@@ -26,6 +26,10 @@ public class FirebaseService {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference gameRef = database.getReference(RandomStringBuilder.randomString(32));
         gameRef.setValue(game);
+    }
+
+    public void getGame(){
+
     }
 
     public void savePair(String gameName, ArrayList<Pair> pairs){

@@ -68,46 +68,13 @@
         android:id="@+id/startGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:onClick="makeGame"
         android:text="@string/start_game"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/characterSpritePlayerOne"
-        app:layout_constraintHorizontal_bias="0.863"
-        app:layout_constraintStart_toEndOf="@+id/characterSpritePlayerTwo"
+        app:layout_constraintEnd_toStartOf="@+id/namePlayerTwo"
+        app:layout_constraintStart_toEndOf="@+id/namePlayerOne"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.641" />
-
-    <ImageView
-        android:id="@+id/characterSpritePlayerOne"
-        android:layout_width="110dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="52dp"
-        android:contentDescription="@string/description_sprite_p1"
-        android:onClick="switchSprite"
-        android:tag="characterSpritePlayerOne"
-        app:layout_constraintBottom_toTopOf="@+id/startGameButton"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/namePlayerTwo"
-        app:layout_constraintTop_toBottomOf="@+id/namePlayerTwo"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/trainer_sprite_1" />
-
-    <ImageView
-        android:id="@+id/characterSpritePlayerTwo"
-        android:layout_width="110dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="52dp"
-        android:contentDescription="@string/description_sprite_p2"
-        android:onClick="switchSprite"
-        android:tag="characterSpritePlayerTwo"
-        app:layout_constraintBottom_toTopOf="@+id/startGameButton"
-        app:layout_constraintEnd_toEndOf="@+id/namePlayerOne"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/namePlayerOne"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/trainer_sprite_2" />
 
     <EditText
         android:id="@+id/gameNameEditText"

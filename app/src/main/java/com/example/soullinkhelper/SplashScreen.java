@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -14,9 +15,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.soullinkhelper.database.DatabaseHelper;
 import com.example.soullinkhelper.models.Game;
+import com.example.soullinkhelper.models.Pair;
+import com.example.soullinkhelper.models.Pokemon;
 import com.example.soullinkhelper.service.FirebaseService;
 import com.example.soullinkhelper.service.PokemonService;
-import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 
 public class SplashScreen extends AppCompatActivity {
@@ -29,6 +33,22 @@ public class SplashScreen extends AppCompatActivity {
         setTheme(R.style.SplashScreen);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        //REMOVE THIS
+        Pokemon pokemon = new Pokemon("Pikachu");
+        Pair pair = new Pair(pokemon, pokemon, "Route 1");
+        ArrayList<Pair> pairs = new ArrayList<>();
+        pairs.add(pair);
+        Pair newPair = new Pair(pokemon, pokemon, "Route 2");
+        pairs.add(newPair);
+        FirebaseService.getFirebaseServiceInstance().savePairs("NUHAGT31FHRYN5GZXX4YEVIC5JRNTA3N", pairs);
+        Game tmp = FirebaseService.getFirebaseServiceInstance().getGame("NUHAGT31FHRYN5GZXX4YEVIC5JRNTA3N");
+        Log.d("TestGetGame", tmp.toString());
+//        ArrayList<Game> gamesTmp = FirebaseService.getFirebaseServiceInstance().getGames();
+//        for (Game gameTmp : gamesTmp){
+//            Log.d("AllGames", gamesTmp.toString());
+//        }
+        //
 
         loadText = findViewById(R.id.waitText);
         loading = findViewById(R.id.loading);

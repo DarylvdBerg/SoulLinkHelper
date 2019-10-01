@@ -12,12 +12,12 @@ public class Game {
     private Player playerOne;
     private Player playerTwo;
 
-    public Game(String name, String region, String namePlayerOne, String namePlayerTwo, ImageView spritePlayerOne, ImageView spritePlayerTwo){
+    public Game(String name, String region, Player playerOne, Player playerTwo){
         this.name = name;
         this.region = region;
         this.pairs = new ArrayList<>();
-        playerOne = new Player(namePlayerOne, spritePlayerOne);
-        playerTwo = new Player(namePlayerTwo, spritePlayerTwo);
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
         pairs = new ArrayList<>();
     }
 
@@ -39,6 +39,10 @@ public class Game {
 
     public ArrayList<Pair> getPairs() {
         return pairs;
+    }
+
+    public void setPairs(ArrayList<Pair> pairs) {
+        this.pairs = pairs;
     }
 
     public String getRegion() {

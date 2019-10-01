@@ -12,7 +12,6 @@ public class RandomStringBuilderTest {
     @Test
     public void randomStringSize() {
         String res = RandomStringBuilder.randomString(32);
-        System.out.println(res);
         assertEquals(32, res.length());
     }
 }

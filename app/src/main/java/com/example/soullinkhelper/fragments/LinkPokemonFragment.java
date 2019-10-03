@@ -18,24 +18,23 @@ import com.example.soullinkhelper.R;
 import com.example.soullinkhelper.dao.PokemonDAO;
 import com.example.soullinkhelper.models.Player;
 import com.example.soullinkhelper.models.PlayerManager;
-import com.example.soullinkhelper.service.PokemonService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class LinkPokemonFragment extends Fragment {
 
-    private ImageView pokemonSprite;
-    private TextView pokemonType;
-    private Spinner spinner;
-    private Spinner caughtBySpinner;
-    private ArrayList<String> pokemonNameList;
-    private ArrayList<Player> playerList;
     private String sprite;
     private EditText pokemonNickname;
     private Player caughtBy;
+    private String pokemonName;
+    private ImageView pokemonSprite;
+    private TextView pokemonType;
+
+    private ArrayList<String> pokemonNameList;
+    private ArrayList<Player> playerList;
 
     private PokemonDAO pokemonDAO;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle){
@@ -46,15 +45,14 @@ public class LinkPokemonFragment extends Fragment {
         pokemonNameList = pokemonDAO.getAllPokemonNamesFromDb();
         playerList = PlayerManager.getInstance().getPlayerList();
 
-        spinner = v.findViewById(R.id.pokemonSearch);
-        caughtBySpinner = v.findViewById(R.id.caughtBy);
+        Spinner spinner = v.findViewById(R.id.pokemonSearch);
+        Spinner caughtBySpinner = v.findViewById(R.id.caughtBy);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_item, pokemonNameList);
         ArrayAdapter<Player> caughtByAdapter = new ArrayAdapter<Player>(v.getContext(),
                 android.R.layout.simple_list_item_1, playerList);
 
         spinner.setAdapter(adapter);
-        spinner.setSelection(0);
 
         caughtBySpinner.setAdapter(caughtByAdapter);
 
@@ -65,6 +63,7 @@ public class LinkPokemonFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                pokemonName = pokemonNameList.get(i);
                 ArrayList<String> types = pokemonDAO.getPokemonTypesDb(pokemonNameList.get(i).toLowerCase());
                 sprite = pokemonDAO.getPokemonSpriteFromDb(pokemonNameList.get(i).toLowerCase());
                 pokemonType.setText(types.get(0));
@@ -99,8 +98,8 @@ public class LinkPokemonFragment extends Fragment {
         return v;
     }
 
-    public String getPokemonName(){
-        return String.valueOf(spinner.getSelectedItemId());
+    public String getPokemonName() {
+        return this.pokemonName;
     }
 
     public ArrayList<String> getPokemonType(){
@@ -118,7 +117,7 @@ public class LinkPokemonFragment extends Fragment {
         return this.caughtBy;
     }
 
-    public String getPokemonSpirte(){
+    public String getPokemonSprite(){
         return this.sprite;
     }
 

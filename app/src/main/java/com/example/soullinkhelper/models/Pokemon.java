@@ -34,6 +34,10 @@ public class Pokemon {
         return nickname;
     }
 
+    public String getSprite(){
+        return this.sprite;
+    }
+
     public void giveNickname(String nickname){
         this.nickname = nickname;
     }

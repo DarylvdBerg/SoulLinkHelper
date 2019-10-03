@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.soullinkhelper.database.DatabaseHelper;
 import com.example.soullinkhelper.models.Game;
+import com.example.soullinkhelper.models.Player;
+import com.example.soullinkhelper.models.PlayerManager;
 import com.example.soullinkhelper.service.FirebaseService;
 import com.example.soullinkhelper.service.PokemonService;
 import com.google.firebase.database.FirebaseDatabase;
@@ -40,6 +42,10 @@ public class SplashScreen extends AppCompatActivity {
         DatabaseHelper helper = DatabaseHelper.getHelper(this);
         getPokemonFromApi task = new getPokemonFromApi(this);
 
+        // REMOVE CODE AFTER TESTING
+        PlayerManager.getInstance().addPlayer(new Player("Daryl", null));
+        PlayerManager.getInstance().addPlayer(new Player("Ryan", null));
+
 
         if(helper.checkIfDbEmpty(getResources().getInteger(R.integer.pokemon_api_call_count))){
             helper.clearDatabase();
@@ -50,7 +56,7 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private void switchIntent(){
-        Intent homeIntent = new Intent(SplashScreen.this, GameManager.class);
+        Intent homeIntent = new Intent(SplashScreen.this, MainActivity.class);
         startActivity(homeIntent);
         finish();
     }

@@ -1,26 +1,26 @@
 package com.example.soullinkhelper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.soullinkhelper.adapter.LinkAdapter;
 import com.example.soullinkhelper.models.PairManager;
 import com.example.soullinkhelper.models.PlayerManager;
 
 public class MainActivity extends AppCompatActivity {
 
-    // TODO: Get correct games
-    // TODO: Show all linked pokemon
-    // TODO: Show Player name
-
-    private ImageView linkPokemonBtn;
+    private PlayerManager playerManager;
+    private RecyclerView.Adapter mAdapter;
     private TextView noLinksFound;
     private PairManager pairManager;
-    private PlayerManager playerManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         pairManager = PairManager.getInstance();
 
-        linkPokemonBtn = findViewById(R.id.linkPokemonBtn);
+        ImageView linkPokemonBtn = findViewById(R.id.linkPokemonBtn);
         linkPokemonBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,13 +38,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        RecyclerView rView = findViewById(R.id.links);
         noLinksFound = findViewById(R.id.noLinksFound);
-        noLinksFound.setVisibility(pairManager.getPairList().size() < 1 ?
-                View.VISIBLE :
-                View.GONE);
+
+        rView.setHasFixedSize(true);
+        RecyclerView.LayoutManager lManager = new LinearLayoutManager(this);
+        mAdapter = new LinkAdapter(PairManager.getInstance().getPairList());
+        rView.setLayoutManager(lManager);
+        rView.setAdapter(mAdapter);
+
+        setListTextVisibility();
+    }
+
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        setListTextVisibility();
+        mAdapter.notifyDataSetChanged();
     }
 
     private void linkPokemonActivity(){
         startActivity(new Intent(this, LinkPokemon.class));
+    }
+
+    private void setListTextVisibility(){
+        noLinksFound.setVisibility(pairManager.getPairList().size() < 1 ?
+                View.VISIBLE :
+                View.GONE);
     }
 }

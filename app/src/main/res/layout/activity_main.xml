@@ -17,12 +17,13 @@
         android:textSize="30sp"
         android:text="@string/no_links_found"/>
 
-    <view class="androidx.appcompat.app.AlertController$RecycleListView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/links"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/menu">
 
-    </view>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
     <RelativeLayout

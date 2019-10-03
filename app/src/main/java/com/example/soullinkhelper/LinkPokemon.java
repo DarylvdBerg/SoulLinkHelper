@@ -1,11 +1,14 @@
 package com.example.soullinkhelper;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.soullinkhelper.fragments.LinkPokemonFragment;
 import com.example.soullinkhelper.models.Pair;
@@ -13,9 +16,7 @@ import com.example.soullinkhelper.models.PairManager;
 import com.example.soullinkhelper.models.Pokemon;
 import com.example.soullinkhelper.utils.ToastMaker;
 
-import java.util.ArrayList;
-
-public class LinkPokemon extends AppCompatActivity {
+public class LinkPokemon extends AppCompatActivity{
 
     private LinkPokemonFragment fragment_1;
     private LinkPokemonFragment fragment_2;
@@ -29,17 +30,26 @@ public class LinkPokemon extends AppCompatActivity {
 
         fragment_1 = new LinkPokemonFragment();
         fragment_2 = new LinkPokemonFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction()
-                .replace(R.id.fragment_1, fragment_1);
-        manager.beginTransaction()
-                .replace(R.id.fragment_2, fragment_2);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_1, fragment_1);
+        transaction.replace(R.id.fragment_2, fragment_2);
+        transaction.commit();
+
         spinner = findViewById(R.id.routeSelector);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.kantoRoutes));
 
         spinner.setAdapter(adapter);
+
+        Button savePairBtn = findViewById(R.id.linkPairBtn);
+        savePairBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createNewPair();
+            }
+        });
 
     }
 
@@ -49,14 +59,14 @@ public class LinkPokemon extends AppCompatActivity {
                     fragment_1.getPokemonName(),
                     fragment_1.getPokemonType(),
                     fragment_1.getPokemonNickname(),
-                    fragment_1.getPokemonSpirte(),
+                    fragment_1.getPokemonSprite(),
                     fragment_1.getCaughtBy()
                     );
             Pokemon p2 = new Pokemon(
                     fragment_2.getPokemonName(),
                     fragment_2.getPokemonType(),
                     fragment_2.getPokemonNickname(),
-                    fragment_2.getPokemonSpirte(),
+                    fragment_2.getPokemonSprite(),
                     fragment_2.getCaughtBy()
             );
 

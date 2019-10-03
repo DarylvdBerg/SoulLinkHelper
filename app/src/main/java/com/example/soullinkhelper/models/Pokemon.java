@@ -11,10 +11,15 @@ public class Pokemon {
     private String name;
     private ArrayList<String> types;
     private String nickname;
-    private ImageView sprite;
+    private String sprite;
+    private Player caughtBy;
 
-    public Pokemon(String name){
+    public Pokemon(String name, ArrayList<String> types, String nickname, String sprite, Player caughtBy){
         this.name = name;
+        this.types = types;
+        this.nickname = nickname;
+        this.sprite = sprite;
+        this.caughtBy = caughtBy;
     }
 
     public String getName(){
@@ -29,9 +34,8 @@ public class Pokemon {
         return nickname;
     }
 
-    @Exclude
-    public ImageView getSprite() {
-        return sprite;
+    public String getSprite(){
+        return this.sprite;
     }
 
     public void giveNickname(String nickname){

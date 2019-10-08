@@ -19,5 +19,6 @@ public class DatabaseInfo {
 
     public class GameColumn {
         public static final String GAME_ID = "game_id";
+        public static final String GAME_NAME = "game_name";
     }
 }

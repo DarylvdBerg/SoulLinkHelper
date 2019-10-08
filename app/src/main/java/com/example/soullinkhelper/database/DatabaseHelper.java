@@ -57,9 +57,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 DatabaseInfo.PokemonColumn.TYPE_2+" TEXT,"+
                 DatabaseInfo.PokemonColumn.SPRITE+" TEXT);");
 
-        db.execSQL("CREATE TABLE "+DatabaseInfo.GameColumn.GAME_ID+"("+
+        db.execSQL("CREATE TABLE "+DatabaseInfo.GameTable.GAME_TABLE+"("+
                 BaseColumns._ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                DatabaseInfo.GameColumn.GAME_ID+" TEXT);");
+                DatabaseInfo.GameColumn.GAME_ID+" TEXT," +
+                DatabaseInfo.GameColumn.GAME_NAME+" TEXT);");
     }
 
     @Override

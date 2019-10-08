@@ -55,16 +55,7 @@ public class NewGame extends AppCompatActivity {
         Player playerTwo = new Player(playerNameTwo, null);
         game = new Game(gameName, region, playerOne, playerTwo);
         game.setGameId(RandomStringBuilder.randomString(32));
-        gameDao.writeGameToDb(game.getGameId());
+        gameDao.writeGameToDb(game);
         FirebaseService.getFirebaseServiceInstance().saveGame(game);
     }
-
-    //Test pair, remove this
-//    public void makePair(){
-//        Pokemon pokemon = new Pokemon("Charmander");
-//        Pair pair = new Pair(pokemon, pokemon, "Route 1");
-//        game.addPair(pair);
-//        FirebaseService.getFirebaseServiceInstance().savePair(game.getName(), game.getPairs());
-//    }
-
 }

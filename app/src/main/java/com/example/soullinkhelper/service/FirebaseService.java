@@ -1,11 +1,15 @@
 package com.example.soullinkhelper.service;
 
 
+import android.app.Application;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 
+import com.example.soullinkhelper.dao.GameDAO;
 import com.example.soullinkhelper.models.Game;
+import com.example.soullinkhelper.models.GameManager;
 import com.example.soullinkhelper.models.Pair;
 import com.example.soullinkhelper.models.PairManager;
 import com.example.soullinkhelper.models.Player;
@@ -23,8 +27,6 @@ import java.util.ArrayList;
 public class FirebaseService {
 
     private static FirebaseService firebaseService;
-    private Game game;
-    private ArrayList<Game> games;
 
     public static FirebaseService getFirebaseServiceInstance(){
         if (firebaseService == null){
@@ -39,14 +41,14 @@ public class FirebaseService {
         gameRef.child(game.getGameId()).setValue(game);
     }
 
-    public Game getGame(String gameID){
+    public void getGame(String gameID, final GameDAO gameDAO){
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference gameRef = database.getReference("Games");
         gameRef.child(gameID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Game game = makeGame(dataSnapshot);
-                setGame(game);
+                gameDAO.writeGameToDb(game);
             }
 
             @Override
@@ -54,7 +56,6 @@ public class FirebaseService {
                 //Wat moet hier???
             }
         });
-        return this.game;
     }
 
     public void playerList(String gameId){
@@ -95,29 +96,26 @@ public class FirebaseService {
         });
     }
 
-    public ArrayList<Game> getGames() {
+    public void getGames() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference gameRef = database.getReference("Games");
         Log.d("COOL", gameRef.toString());
         gameRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("COOL", dataSnapshot.toString());
                 ArrayList<Game> games = new ArrayList<>();
                 for (DataSnapshot dataSnapshotGame : dataSnapshot.getChildren()){
                     Game game = makeGame(dataSnapshotGame);
                     games.add(game);
                 }
-                setGames(games);
+                GameManager.getInstance().setGameList(games);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("COOL", "PLS NO CANCEL");
                 //Wat moet hier???
             }
         });
-        return this.games;
     }
 
     public void savePair(String gameName, Pair pair, int pairsListSize){
@@ -164,14 +162,5 @@ public class FirebaseService {
         game.setPairs(pairs);
 
         return game;
-    }
-
-    private void setGames(ArrayList<Game> games){
-        this.games = games;
-    }
-
-    private void setGame(Game game){
-        this.game = game;
-        Log.d("TESTCOOL", "setGame: " + game.getName() + game.getPairs().toString());
     }
 }

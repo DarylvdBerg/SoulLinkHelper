@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -14,13 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.soullinkhelper.database.DatabaseHelper;
-import com.example.soullinkhelper.models.Game;
-import com.example.soullinkhelper.models.Pair;
-import com.example.soullinkhelper.models.Pokemon;
-import com.example.soullinkhelper.service.FirebaseService;
 import com.example.soullinkhelper.service.PokemonService;
-
-import java.util.ArrayList;
 
 
 public class SplashScreen extends AppCompatActivity {
@@ -54,7 +47,7 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private void switchIntent(){
-        Intent homeIntent = new Intent(SplashScreen.this, GameManager.class);
+        Intent homeIntent = new Intent(SplashScreen.this, GameSelect.class);
         startActivity(homeIntent);
         finish();
     }

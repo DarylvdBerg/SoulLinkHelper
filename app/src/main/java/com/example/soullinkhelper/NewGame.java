@@ -48,12 +48,11 @@ public class NewGame extends AppCompatActivity {
     public void makeGame(View view){
         String gameName = ((EditText)findViewById(R.id.gameNameEditText)).getText().toString();
         String region = ((Spinner)findViewById(R.id.regionSpinner)).getSelectedItem().toString();
-
         String playerNameOne = ((EditText)findViewById(R.id.namePlayerOne)).getText().toString();
         String playerNameTwo = ((EditText)findViewById(R.id.namePlayerTwo)).getText().toString();
-        Player playerOne = new Player(playerNameOne);
-        Player playerTwo = new Player(playerNameTwo);
 
+        Player playerOne = new Player(playerNameOne, null);
+        Player playerTwo = new Player(playerNameTwo, null);
         game = new Game(gameName, region, playerOne, playerTwo);
         game.setGameId(RandomStringBuilder.randomString(32));
         gameDao.writeGameToDb(game.getGameId());
@@ -61,11 +60,11 @@ public class NewGame extends AppCompatActivity {
     }
 
     //Test pair, remove this
-    public void makePair(){
-        Pokemon pokemon = new Pokemon("Charmander");
-        Pair pair = new Pair(pokemon, pokemon, "Route 1");
-        game.addPair(pair);
-        FirebaseService.getFirebaseServiceInstance().savePairs(game.getName(), game.getPairs());
-    }
+//    public void makePair(){
+//        Pokemon pokemon = new Pokemon("Charmander");
+//        Pair pair = new Pair(pokemon, pokemon, "Route 1");
+//        game.addPair(pair);
+//        FirebaseService.getFirebaseServiceInstance().savePair(game.getName(), game.getPairs());
+//    }
 
 }

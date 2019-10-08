@@ -7,7 +7,10 @@ import androidx.annotation.NonNull;
 
 import com.example.soullinkhelper.models.Game;
 import com.example.soullinkhelper.models.Pair;
+import com.example.soullinkhelper.models.PairManager;
 import com.example.soullinkhelper.models.Player;
+import com.example.soullinkhelper.models.PlayerManager;
+import com.example.soullinkhelper.models.Pokemon;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,6 +57,44 @@ public class FirebaseService {
         return this.game;
     }
 
+    public void playerList(String gameId){
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference gameRef = database.getReference("Games");
+        gameRef.child(gameId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Player playerOne = new Player(dataSnapshot.child("playerOne").child("name").getValue().toString(),
+                        null);
+                Player playerTwo = new Player(dataSnapshot.child("playerTwo").child("name").getValue().toString(),
+                        null);
+
+                PlayerManager.getInstance().addPlayer(playerOne);
+                PlayerManager.getInstance().addPlayer(playerTwo);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void getPairs(String gameId){
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference gameRef = database.getReference("Games");
+        gameRef.child(gameId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     public ArrayList<Game> getGames() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference gameRef = database.getReference("Games");
@@ -85,6 +126,18 @@ public class FirebaseService {
         gameRef.child(gameName).child("pairs").child(Integer.toString(pairsListSize-1)).setValue(pair);
     }
 
+    public void savePlayerOne(String gameName, Player player){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference gameRef = database.getReference("Games");
+        gameRef.child(gameName).child("playerOne").setValue(player);
+    }
+
+    public void savePlayerTwo(String gameName, Player player){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference gameRef = database.getReference("Games");
+        gameRef.child(gameName).child("playerTwo").setValue(player);
+    }
+
     public void savePairs(String gameName, ArrayList<Pair> pairs){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference gameRef = database.getReference("Games");
@@ -101,8 +154,8 @@ public class FirebaseService {
 
         String namePlayerOne = dataSnapshot.child("playerOne").child("name").getValue().toString();
         String namePlayerTwo = dataSnapshot.child("playerTwo").child("name").getValue().toString();
-        Player playerOne = new Player(namePlayerOne);
-        Player playerTwo = new Player(namePlayerTwo);
+        Player playerOne = new Player(namePlayerOne, null);
+        Player playerTwo = new Player(namePlayerTwo, null);
 
         game = new Game(name, region, playerOne, playerTwo);
 

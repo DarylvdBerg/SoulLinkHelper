@@ -19,7 +19,7 @@ public class GameManager extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        Button newGameButton = findViewById(R.id.buttonTemp);
+        Button newGameButton = findViewById(R.id.buttonNewGame);
         newGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

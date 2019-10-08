@@ -34,22 +34,6 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        //REMOVE THIS
-        Pokemon pokemon = new Pokemon("Pikachu");
-        Pair pair = new Pair(pokemon, pokemon, "Route 1");
-        ArrayList<Pair> pairs = new ArrayList<>();
-        pairs.add(pair);
-        Pair newPair = new Pair(pokemon, pokemon, "Route 2");
-        pairs.add(newPair);
-        FirebaseService.getFirebaseServiceInstance().savePairs("NUHAGT31FHRYN5GZXX4YEVIC5JRNTA3N", pairs);
-        Game tmp = FirebaseService.getFirebaseServiceInstance().getGame("NUHAGT31FHRYN5GZXX4YEVIC5JRNTA3N");
-//        Log.d("TestGetGame", tmp.toString());
-//        ArrayList<Game> gamesTmp = FirebaseService.getFirebaseServiceInstance().getGames();
-//        for (Game gameTmp : gamesTmp){
-//            Log.d("AllGames", gamesTmp.toString());
-//        }
-        //
-
         loadText = findViewById(R.id.waitText);
         loading = findViewById(R.id.loading);
 

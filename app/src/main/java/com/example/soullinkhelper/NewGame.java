@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import com.example.soullinkhelper.dao.GameDAO;
 import com.example.soullinkhelper.models.Game;
 import com.example.soullinkhelper.models.Pair;
+import com.example.soullinkhelper.models.Player;
 import com.example.soullinkhelper.models.Pokemon;
 import com.example.soullinkhelper.service.FirebaseService;
 import com.example.soullinkhelper.utility.RandomStringBuilder;
@@ -49,9 +50,10 @@ public class NewGame extends AppCompatActivity {
         String region = ((Spinner)findViewById(R.id.regionSpinner)).getSelectedItem().toString();
         String playerNameOne = ((EditText)findViewById(R.id.namePlayerOne)).getText().toString();
         String playerNameTwo = ((EditText)findViewById(R.id.namePlayerTwo)).getText().toString();
-        ImageView playerSpriteOne = ((ImageView)findViewById(R.id.characterSpritePlayerOne));
-        ImageView playerSpriteTwo = ((ImageView)findViewById(R.id.characterSpritePlayerTwo));
-        game = new Game(gameName, region, playerNameOne, playerNameTwo, playerSpriteOne, playerSpriteTwo);
+
+        Player playerOne = new Player(playerNameOne, null);
+        Player playerTwo = new Player(playerNameTwo, null);
+        game = new Game(gameName, region, playerOne, playerTwo);
         game.setGameId(RandomStringBuilder.randomString(32));
         gameDao.writeGameToDb(game.getGameId());
         FirebaseService.getFirebaseServiceInstance().saveGame(game);

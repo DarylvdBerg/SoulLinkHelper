@@ -6,14 +6,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.soullinkhelper.adapter.LinkAdapter;
 import com.example.soullinkhelper.models.PairManager;
 import com.example.soullinkhelper.models.PlayerManager;
+import com.example.soullinkhelper.service.FirebaseService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         pairManager = PairManager.getInstance();
+
+        getPlayersFromFirebase();
+
+        Log.i("Player size", PlayerManager.getInstance().getPlayerList().size()+"");
 
         ImageView linkPokemonBtn = findViewById(R.id.linkPokemonBtn);
         linkPokemonBtn.setOnClickListener(new View.OnClickListener() {
@@ -66,5 +71,9 @@ public class MainActivity extends AppCompatActivity {
         noLinksFound.setVisibility(pairManager.getPairList().size() < 1 ?
                 View.VISIBLE :
                 View.GONE);
+    }
+
+    private void getPlayersFromFirebase(){
+        FirebaseService.getFirebaseServiceInstance().playerList("NUHAGT31FHRYN5GZXX4YEVIC5JRNTA3N");
     }
 }

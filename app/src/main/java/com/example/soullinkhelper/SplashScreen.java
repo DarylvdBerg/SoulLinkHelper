@@ -43,7 +43,7 @@ public class SplashScreen extends AppCompatActivity {
         pairs.add(newPair);
         FirebaseService.getFirebaseServiceInstance().savePairs("NUHAGT31FHRYN5GZXX4YEVIC5JRNTA3N", pairs);
         Game tmp = FirebaseService.getFirebaseServiceInstance().getGame("NUHAGT31FHRYN5GZXX4YEVIC5JRNTA3N");
-        Log.d("TestGetGame", tmp.toString());
+//        Log.d("TestGetGame", tmp.toString());
 //        ArrayList<Game> gamesTmp = FirebaseService.getFirebaseServiceInstance().getGames();
 //        for (Game gameTmp : gamesTmp){
 //            Log.d("AllGames", gamesTmp.toString());

@@ -39,7 +39,6 @@ public class FirebaseService {
     public Game getGame(String gameID){
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference gameRef = database.getReference("Games");
-        Log.d("TESTING", "ik hoop dat dit werkt");
         gameRef.child(gameID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -83,7 +82,7 @@ public class FirebaseService {
     public void savePair(String gameName, Pair pair, int pairsListSize){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference gameRef = database.getReference("Games");
-        gameRef.child(gameName).child("pairs").child(Integer.toString(pairsListSize)).setValue(pair);
+        gameRef.child(gameName).child("pairs").child(Integer.toString(pairsListSize-1)).setValue(pair);
     }
 
     public void savePairs(String gameName, ArrayList<Pair> pairs){
@@ -120,5 +119,6 @@ public class FirebaseService {
 
     private void setGame(Game game){
         this.game = game;
+        Log.d("TESTCOOL", "setGame: " + game.getName() + game.getPairs().toString());
     }
 }

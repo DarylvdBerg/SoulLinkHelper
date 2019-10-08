@@ -104,9 +104,9 @@ public class LinkPokemonFragment extends Fragment {
 
     public ArrayList<String> getPokemonType(){
         ArrayList<String> types = new ArrayList<>();
-        String[] typeString = pokemonType.getText().toString().split("/");
+        String[] typeString = pokemonType.getText().toString().split(" / ");
         types.add(typeString[0].trim());
-        if(types.size() > 1){
+        if(typeString.length > 1){
             types.add(typeString[1].trim());
         }
 

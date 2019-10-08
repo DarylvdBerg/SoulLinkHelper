@@ -16,6 +16,13 @@ public class Pair {
         state = State.ALIVE;
     }
 
+    public Pair(Pokemon pokemon1, Pokemon pokemon2, String route, State state){
+        this.pokemon1 = pokemon1;
+        this.pokemon2 = pokemon2;
+        this.route = route;
+        this.state = state;
+    }
+
     public State getState() {
         return state;
     }

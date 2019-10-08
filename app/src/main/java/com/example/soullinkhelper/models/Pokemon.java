@@ -38,6 +38,10 @@ public class Pokemon {
         return this.sprite;
     }
 
+    public Player getCaughtBy(){
+        return this.caughtBy;
+    }
+
     public void giveNickname(String nickname){
         this.nickname = nickname;
     }

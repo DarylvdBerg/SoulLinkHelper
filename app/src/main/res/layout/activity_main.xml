@@ -7,15 +7,15 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/noLinksFound"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="30sp"
-        android:text="@string/no_links_found"/>
+<!--    <TextView-->
+<!--        android:id="@+id/noLinksFound"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:textSize="30sp"-->
+<!--        android:text="@string/no_links_found"/>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/links"

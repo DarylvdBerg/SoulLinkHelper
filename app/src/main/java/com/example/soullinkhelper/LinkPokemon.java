@@ -1,5 +1,6 @@
 package com.example.soullinkhelper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.example.soullinkhelper.fragments.LinkPokemonFragment;
 import com.example.soullinkhelper.models.Pair;
 import com.example.soullinkhelper.models.PairManager;
 import com.example.soullinkhelper.models.Pokemon;
+import com.example.soullinkhelper.service.FirebaseService;
 import com.example.soullinkhelper.utils.ToastMaker;
 
 public class LinkPokemon extends AppCompatActivity{
@@ -70,7 +72,7 @@ public class LinkPokemon extends AppCompatActivity{
                     fragment_2.getCaughtBy()
             );
 
-            linkNewPair(p1, p2, String.valueOf(spinner.getSelectedItemId()));
+            linkNewPair(p1, p2, String.valueOf(spinner.getSelectedItem()));
         } else {
             ToastMaker.makeToast(this, "Please fill in the nickname for the pokemons!", 0);
         }
@@ -78,6 +80,7 @@ public class LinkPokemon extends AppCompatActivity{
 
     private void linkNewPair(Pokemon pk1, Pokemon pk2, String route){
         Pair pair = new Pair(pk1, pk2, route);
-        PairManager.getInstance().addPair(pair);
+        FirebaseService.getFirebaseServiceInstance().savePair("NUHAGT31FHRYN5GZXX4YEVIC5JRNTA3N", pair, PairManager.getInstance().getPairList().size());
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

@@ -6,8 +6,10 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.soullinkhelper.dao.GameDAO;
+import com.example.soullinkhelper.enums.State;
 import com.example.soullinkhelper.models.Game;
 import com.example.soullinkhelper.models.GameManager;
 import com.example.soullinkhelper.models.Pair;
@@ -59,6 +61,7 @@ public class FirebaseService {
     }
 
     public void playerList(String gameId){
+        PlayerManager.getInstance().clearPlayerList();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference gameRef = database.getReference("Games");
         gameRef.child(gameId).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -80,13 +83,26 @@ public class FirebaseService {
         });
     }
 
-    public void getPairs(String gameId){
+    public void getPairs(String gameId, final RecyclerView.Adapter adapter){
+        PairManager.getInstance().clearPairList();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference gameRef = database.getReference("Games");
         gameRef.child(gameId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapShot : dataSnapshot.child("pairs").getChildren()){
+                    DataSnapshot pokemon1 = snapShot.child("pokemon1");
+                    DataSnapshot pokemon2 = snapShot.child("pokemon2");
 
+                    Pair pair = new Pair(
+                            createPokemon(pokemon1),
+                            createPokemon(pokemon2),
+                            snapShot.child("route").getValue().toString(),
+                            State.valueOf(snapShot.child("state").getValue().toString()));
+
+                    PairManager.getInstance().addPair(pair);
+                }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -121,7 +137,7 @@ public class FirebaseService {
     public void savePair(String gameName, Pair pair, int pairsListSize){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference gameRef = database.getReference("Games");
-        gameRef.child(gameName).child("pairs").child(Integer.toString(pairsListSize-1)).setValue(pair);
+        gameRef.child(gameName).child("pairs").child(Integer.toString(pairsListSize)).setValue(pair);
     }
 
     public void savePlayerOne(String gameName, Player player){
@@ -162,5 +178,18 @@ public class FirebaseService {
         game.setPairs(pairs);
 
         return game;
+    }
+
+    private Pokemon createPokemon(DataSnapshot snapshot){
+        String name = snapshot.child("name").getValue().toString();
+        String nickname = snapshot.child("nickname").getValue().toString();
+        String sprite = snapshot.child("sprite").getValue().toString();
+        ArrayList<String> types = new ArrayList<>();
+        for(int i = 0; i < snapshot.child("types").getChildrenCount(); i++){
+            types.add(snapshot.child("types").child(String.valueOf(i)).getValue().toString());
+        }
+        Player player = new Player(snapshot.child("caughtBy").child("name").getValue().toString(), null);
+
+        return new Pokemon(name, types, nickname, sprite, player);
     }
 }

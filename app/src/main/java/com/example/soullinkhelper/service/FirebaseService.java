@@ -163,6 +163,7 @@ public class FirebaseService {
     private Game makeGame(DataSnapshot dataSnapshot){
         Game game;
 
+        String gameId = dataSnapshot.child("gameId").getValue().toString();
         String name = dataSnapshot.child("name").getValue().toString();
         String region = dataSnapshot.child("region").getValue().toString();
 
@@ -172,7 +173,7 @@ public class FirebaseService {
         Player playerTwo = new Player(namePlayerTwo, null);
 
         game = new Game(name, region, playerOne, playerTwo);
-
+        game.setGameId(gameId);
         ArrayList<Pair> pairs = (ArrayList<Pair>)dataSnapshot.child("pairs").getValue();
 
         game.setPairs(pairs);

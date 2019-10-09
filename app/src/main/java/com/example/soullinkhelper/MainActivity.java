@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.soullinkhelper.adapter.LinkAdapter;
+import com.example.soullinkhelper.models.GameManager;
 import com.example.soullinkhelper.models.PairManager;
 import com.example.soullinkhelper.models.PlayerManager;
 import com.example.soullinkhelper.service.FirebaseService;
@@ -73,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getPlayersFromFirebase(){
-        FirebaseService.getFirebaseServiceInstance().playerList("NUHAGT31FHRYN5GZXX4YEVIC5JRNTA3N");
+        FirebaseService.getFirebaseServiceInstance().playerList(GameManager.getInstance().getGameID());
     }
 
     private void getPairsFromFirebase(RecyclerView.Adapter adapter){
-        FirebaseService.getFirebaseServiceInstance().getPairs("NUHAGT31FHRYN5GZXX4YEVIC5JRNTA3N", adapter);
+        FirebaseService.getFirebaseServiceInstance().getPairs(GameManager.getInstance().getGameID(), adapter);
     }
 }

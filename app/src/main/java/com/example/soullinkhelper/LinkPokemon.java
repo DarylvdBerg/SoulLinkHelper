@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.soullinkhelper.fragments.LinkPokemonFragment;
+import com.example.soullinkhelper.models.GameManager;
 import com.example.soullinkhelper.models.Pair;
 import com.example.soullinkhelper.models.PairManager;
 import com.example.soullinkhelper.models.Pokemon;
@@ -44,7 +45,6 @@ public class LinkPokemon extends AppCompatActivity{
                 getResources().getStringArray(R.array.kantoRoutes));
 
         spinner.setAdapter(adapter);
-
         Button savePairBtn = findViewById(R.id.linkPairBtn);
         savePairBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +80,7 @@ public class LinkPokemon extends AppCompatActivity{
 
     private void linkNewPair(Pokemon pk1, Pokemon pk2, String route){
         Pair pair = new Pair(pk1, pk2, route);
-        FirebaseService.getFirebaseServiceInstance().savePair("NUHAGT31FHRYN5GZXX4YEVIC5JRNTA3N", pair, PairManager.getInstance().getPairList().size());
+        FirebaseService.getFirebaseServiceInstance().savePair(GameManager.getInstance().getGameID(), pair, PairManager.getInstance().getPairList().size());
         startActivity(new Intent(this, MainActivity.class));
     }
 }

@@ -21,8 +21,8 @@ public class GameDAO {
 
     public void writeGameToDb(Game game){
         ContentValues values = new ContentValues();
-        values.put("game_id", game.getGameId());
-        values.put("game_name", game.getName());
+        values.put(DatabaseInfo.GameColumn.GAME_ID, game.getGameId());
+        values.put(DatabaseInfo.GameColumn.GAME_NAME, game.getName());
         db.insert(DatabaseInfo.GameTable.GAME_TABLE, null, values);
     }
 
@@ -40,5 +40,14 @@ public class GameDAO {
 
         }
         return gameNameList;
+    }
+
+    public String getGameIdByName(String gameName){
+        Cursor c = DatabaseHelper.getHelper(context).query(DatabaseInfo.GameTable.GAME_TABLE, new String[]{DatabaseInfo.GameColumn.GAME_ID},
+                DatabaseInfo.GameColumn.GAME_NAME + "=?", new String[]{gameName}, null, null, null);
+        if(c.moveToFirst()){
+            return c.getString(c.getColumnIndex(DatabaseInfo.GameColumn.GAME_ID));
+        }
+        return null;
     }
 }

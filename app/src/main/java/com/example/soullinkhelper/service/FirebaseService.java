@@ -1,9 +1,7 @@
 package com.example.soullinkhelper.service;
 
 
-import android.app.Application;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;

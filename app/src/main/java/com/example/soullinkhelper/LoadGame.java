@@ -45,7 +45,7 @@ public class LoadGame extends AppCompatActivity {
         buttonStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String gameID = gameDAO.getGameIdByName(((Spinner)findViewById(R.id.spinnerAllGames)).getSelectedItem().toString());
+                String gameID = gameDAO.getGameIdByName(((Spinner)findViewById(R.id.spinnerAllGames)).getSelectedItem().toString().toLowerCase());
                 switchIntent(gameID);
             }
         });

@@ -23,4 +23,9 @@
         <item name="android:windowBackground">@mipmap/empty_new_game_screen</item>
     </style>
 
+    <!-- Links Screen Theme. -->
+    <style name="LinksScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/links_background</item>
+    </style>
+
 </resources>

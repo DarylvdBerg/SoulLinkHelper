@@ -2,6 +2,9 @@ package com.example.soullinkhelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -10,6 +13,7 @@ import android.widget.Spinner;
 
 import com.example.soullinkhelper.dao.GameDAO;
 import com.example.soullinkhelper.models.Game;
+import com.example.soullinkhelper.models.GameManager;
 import com.example.soullinkhelper.models.Pair;
 import com.example.soullinkhelper.models.Player;
 import com.example.soullinkhelper.models.Pokemon;
@@ -31,20 +35,6 @@ public class NewGame extends AppCompatActivity {
         gameDao = new GameDAO(this);
     }
 
-    public void switchSprite(View view){
-        ImageView imageView = (ImageView)view;
-        switch (imageView.getTag().toString()){
-            case "characterSpritePlayerOne":
-                imageView.setImageResource(R.mipmap.trainer_sprite_2);
-                imageView.setTag("characterSpritePlayerTwo");
-                break;
-            case "characterSpritePlayerTwo":
-                imageView.setImageResource(R.mipmap.trainer_sprite_1);
-                imageView.setTag("characterSpritePlayerOne");
-                break;
-        }
-    }
-
     public void makeGame(View view){
         String gameName = ((EditText)findViewById(R.id.gameNameEditText)).getText().toString();
         String region = ((Spinner)findViewById(R.id.regionSpinner)).getSelectedItem().toString();
@@ -54,8 +44,23 @@ public class NewGame extends AppCompatActivity {
         Player playerOne = new Player(playerNameOne, null);
         Player playerTwo = new Player(playerNameTwo, null);
         game = new Game(gameName, region, playerOne, playerTwo);
-        game.setGameId(RandomStringBuilder.randomString(32));
+        String gameID = RandomStringBuilder.randomString(32);
+        game.setGameId(gameID);
+        GameManager.getInstance().setGameID(gameID);
         gameDao.writeGameToDb(game);
         FirebaseService.getFirebaseServiceInstance().saveGame(game);
+
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.game_id), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(getString(R.string.game_id), gameID);
+        editor.commit();
+
+        switchIntent(gameID);
+    }
+
+    private void switchIntent(String gameID){
+        GameManager.getInstance().setGameID(gameID);
+        Intent mainActivityIntent = new Intent(NewGame.this, MainActivity.class);
+        startActivity(mainActivityIntent);
     }
 }

@@ -2,7 +2,9 @@ package com.example.soullinkhelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,12 +23,15 @@ import java.util.ArrayList;
 public class LoadGame extends AppCompatActivity {
 
     private GameDAO gameDAO;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.LinksScreen);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_game);
         gameDAO = new GameDAO(this);
+        sharedPreferences = getSharedPreferences(getString(R.string.game_id), Context.MODE_PRIVATE);
     }
 
     @Override
@@ -46,6 +51,9 @@ public class LoadGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String gameID = gameDAO.getGameIdByName(((Spinner)findViewById(R.id.spinnerAllGames)).getSelectedItem().toString().toLowerCase());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(getString(R.string.game_id), gameID);
+                editor.commit();
                 switchIntent(gameID);
             }
         });
@@ -54,11 +62,15 @@ public class LoadGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String gameID = ((EditText)findViewById(R.id.editTextAddGame)).getText().toString();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(getString(R.string.game_id), gameID);
+                editor.commit();
                 FirebaseService.getFirebaseServiceInstance().getGame(gameID, gameDAO);
                 switchIntent(gameID);
             }
         });
     }
+
     private void switchIntent(String gameID){
         GameManager.getInstance().setGameID(gameID);
         Intent mainActivityIntent = new Intent(LoadGame.this, MainActivity.class);

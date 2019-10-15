@@ -1,6 +1,7 @@
 package com.example.soullinkhelper.service;
 
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.example.soullinkhelper.models.PairManager;
 import com.example.soullinkhelper.models.Player;
 import com.example.soullinkhelper.models.PlayerManager;
 import com.example.soullinkhelper.models.Pokemon;
+import com.example.soullinkhelper.utils.ToastMaker;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -110,7 +112,7 @@ public class FirebaseService {
         });
     }
 
-    public void getGames() {
+    public void getGames(final Context c) {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference gameRef = database.getReference("Games");
         Log.d("COOL", gameRef.toString());
@@ -173,7 +175,6 @@ public class FirebaseService {
         game = new Game(name, region, playerOne, playerTwo);
         game.setGameId(gameId);
         ArrayList<Pair> pairs = (ArrayList<Pair>)dataSnapshot.child("pairs").getValue();
-
         game.setPairs(pairs);
 
         return game;

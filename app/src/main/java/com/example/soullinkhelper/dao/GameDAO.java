@@ -22,7 +22,7 @@ public class GameDAO {
     public void writeGameToDb(Game game){
         ContentValues values = new ContentValues();
         values.put(DatabaseInfo.GameColumn.GAME_ID, game.getGameId());
-        values.put(DatabaseInfo.GameColumn.GAME_NAME, game.getName());
+        values.put(DatabaseInfo.GameColumn.GAME_NAME, game.getName().toLowerCase());
         db.insert(DatabaseInfo.GameTable.GAME_TABLE, null, values);
     }
 

@@ -74,6 +74,7 @@ public class LoadGame extends AppCompatActivity {
     private void switchIntent(String gameID){
         GameManager.getInstance().setGameID(gameID);
         Intent mainActivityIntent = new Intent(LoadGame.this, MainActivity.class);
+        mainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(mainActivityIntent);
     }
 }

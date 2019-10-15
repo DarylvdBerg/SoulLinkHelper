@@ -81,6 +81,9 @@ public class LinkPokemon extends AppCompatActivity{
     private void linkNewPair(Pokemon pk1, Pokemon pk2, String route){
         Pair pair = new Pair(pk1, pk2, route);
         FirebaseService.getFirebaseServiceInstance().savePair(GameManager.getInstance().getGameID(), pair, PairManager.getInstance().getPairList().size());
-        startActivity(new Intent(this, MainActivity.class));
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
+        finish();
     }
 }

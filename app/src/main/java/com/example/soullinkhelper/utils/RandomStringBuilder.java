@@ -1,4 +1,4 @@
-package com.example.soullinkhelper.utility;
+package com.example.soullinkhelper.utils;
 
 import java.util.Random;
 

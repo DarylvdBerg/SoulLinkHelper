@@ -8,17 +8,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.soullinkhelper.dao.GameDAO;
 import com.example.soullinkhelper.models.Game;
 import com.example.soullinkhelper.models.GameManager;
-import com.example.soullinkhelper.models.Pair;
 import com.example.soullinkhelper.models.Player;
-import com.example.soullinkhelper.models.Pokemon;
 import com.example.soullinkhelper.service.FirebaseService;
-import com.example.soullinkhelper.utility.RandomStringBuilder;
+import com.example.soullinkhelper.utils.RandomStringBuilder;
 
 public class NewGame extends AppCompatActivity {
 

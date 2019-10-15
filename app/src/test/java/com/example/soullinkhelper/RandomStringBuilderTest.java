@@ -1,6 +1,6 @@
 package com.example.soullinkhelper;
 
-import com.example.soullinkhelper.utility.RandomStringBuilder;
+import com.example.soullinkhelper.utils.RandomStringBuilder;
 
 import org.junit.Test;
 

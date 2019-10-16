@@ -7,6 +7,7 @@ import android.database.Cursor;
 import com.example.soullinkhelper.database.DatabaseHelper;
 import com.example.soullinkhelper.database.DatabaseInfo;
 import com.example.soullinkhelper.models.Game;
+import com.example.soullinkhelper.models.GameManager;
 
 import java.util.ArrayList;
 

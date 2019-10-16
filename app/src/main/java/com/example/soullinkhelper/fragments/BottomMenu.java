@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.example.soullinkhelper.GameDetails;
 import com.example.soullinkhelper.LinkPokemon;
+import com.example.soullinkhelper.LoadGame;
 import com.example.soullinkhelper.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -24,7 +25,7 @@ public class BottomMenu extends BottomSheetDialogFragment implements View.OnClic
 
         LinearLayout gameDetails = v.findViewById(R.id.gameDetails);
         LinearLayout linkpair = v.findViewById(R.id.linkPair);
-        LinearLayout dataVis = v.findViewById(R.id.dataVis);
+        LinearLayout dataVis = v.findViewById(R.id.backToGameSelect);
         LinearLayout closeMenu = v.findViewById(R.id.closeMenu);
 
         gameDetails.setOnClickListener(this);
@@ -44,7 +45,11 @@ public class BottomMenu extends BottomSheetDialogFragment implements View.OnClic
             case R.id.gameDetails:
                 startActivity(new Intent(getActivity(), GameDetails.class));
                 break;
-            case R.id.dataVis:
+            case R.id.backToGameSelect:
+                Intent intent = new Intent(getActivity(), LoadGame.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
                 break;
             case R.id.closeMenu:
                 dismiss();

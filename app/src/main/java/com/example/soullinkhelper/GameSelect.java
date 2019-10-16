@@ -36,7 +36,7 @@ public class GameSelect extends AppCompatActivity {
                 startActivity(newGameIntent);
             }
         });
-        Button loadGameButton = findViewById(R.id.buttonLoadGame);
+        final Button loadGameButton = findViewById(R.id.buttonLoadGame);
         loadGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,7 +50,9 @@ public class GameSelect extends AppCompatActivity {
             public void onClick(View view) {
                 if (!sharedPreferences.getString(getString(R.string.game_id), "").equals("")){
                     Intent mainActivityIntent = new Intent(GameSelect.this, MainActivity.class);
+                    mainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(mainActivityIntent);
+                    finish();
                 }
             }
         });

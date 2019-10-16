@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity{
         linkPokemonBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                linkPokemonActivity();
                 BottomMenu menu = new BottomMenu();
                 menu.show(getSupportFragmentManager(), "Menu");
 

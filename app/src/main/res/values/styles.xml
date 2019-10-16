@@ -32,8 +32,21 @@
         <item name="strokeColor">#e8756d</item>
     </style>
 
+    <style name="linkButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@android:color/black</item>
+    </style>
+
     <style name="GameDetails" parent="@style/Theme.MaterialComponents.NoActionBar">
         <item name="android:statusBarColor">#4dcdd6</item>
+    </style>
+
+    <style name="linkPair" parent="@style/Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:statusBarColor">#e8756d</item>
+    </style>
+
+    <style name="routeSpinner" parent="@style/Widget.AppCompat.Spinner">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:strokeColor">@android:color/black</item>
     </style>
 
 </resources>

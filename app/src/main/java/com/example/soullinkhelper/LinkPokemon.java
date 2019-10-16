@@ -28,7 +28,7 @@ public class LinkPokemon extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppTheme);
+        setTheme(R.style.linkPair);
         setContentView(R.layout.activity_link_pokemon);
 
         fragment_1 = new LinkPokemonFragment();
@@ -41,7 +41,7 @@ public class LinkPokemon extends AppCompatActivity{
 
         spinner = findViewById(R.id.routeSelector);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,
+                R.layout.route_spinner,
                 getResources().getStringArray(R.array.kantoRoutes));
 
         spinner.setAdapter(adapter);

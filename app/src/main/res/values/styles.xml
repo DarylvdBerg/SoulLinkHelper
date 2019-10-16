@@ -28,4 +28,12 @@
         <item name="android:windowBackground">@mipmap/links_background</item>
     </style>
 
+    <style name="material_button" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">#e8756d</item>
+    </style>
+
+    <style name="GameDetails" parent="@style/Theme.MaterialComponents.NoActionBar">
+        <item name="android:statusBarColor">#4dcdd6</item>
+    </style>
+
 </resources>

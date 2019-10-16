@@ -24,6 +24,7 @@ public class GameDAO {
         values.put(DatabaseInfo.GameColumn.GAME_ID, game.getGameId());
         values.put(DatabaseInfo.GameColumn.GAME_NAME, game.getName().toLowerCase());
         db.insert(DatabaseInfo.GameTable.GAME_TABLE, null, values);
+        GameManager.getInstance().setGameName(game.getName());
     }
 
     public ArrayList<String> getAllGameNamesFromDb(){

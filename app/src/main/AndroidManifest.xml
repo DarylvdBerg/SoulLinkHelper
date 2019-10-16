@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.soullinkhelper">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/launcher_icon"
@@ -12,7 +9,8 @@
         android:roundIcon="@mipmap/launcher_icon"
         android:supportsRtl="true"
         android:theme="@style/SplashScreen">
-        <activity android:name=".LoadGame"></activity>
+        <activity android:name=".GameDetails"></activity>
+        <activity android:name=".LoadGame" />
         <activity android:name=".LinkPokemon" />
         <activity android:name=".NewGame" />
         <activity android:name=".GameSelect" />
@@ -25,5 +23,8 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

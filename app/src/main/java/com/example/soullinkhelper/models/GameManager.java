@@ -6,6 +6,7 @@ public class GameManager {
     private ArrayList<Game> gameList;
     private static GameManager mInstance;
     private String gameID;
+    private String gameName;
 
     private GameManager(){
         gameList = new ArrayList<>();
@@ -24,6 +25,14 @@ public class GameManager {
 
     public void setGameList(ArrayList<Game> gameList) {
         this.gameList = gameList;
+    }
+
+    public void setGameName(String gameName){
+        this.gameName = gameName;
+    }
+
+    public String getGameName(){
+        return this.gameName;
     }
 
     public void setGameID(String gameID) {

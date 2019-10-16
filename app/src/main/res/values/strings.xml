@@ -10,4 +10,6 @@
     <string name="description_sprite_p2">Sprite of player two</string>
     <string name="no_links_found">No links found!</string>
     <string name="game_id"></string>
+
+    <string name="details_copy_id">Copy Game ID</string>
 </resources>

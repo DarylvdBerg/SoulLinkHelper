@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.soullinkhelper.GameDetails;
 import com.example.soullinkhelper.LinkPokemon;
 import com.example.soullinkhelper.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -38,10 +39,10 @@ public class BottomMenu extends BottomSheetDialogFragment implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.linkPair:
-                Intent intent = new Intent(getActivity(), LinkPokemon.class);
-                startActivity(intent);
+                startActivity(new Intent(getActivity(), LinkPokemon.class));
                 break;
             case R.id.gameDetails:
+                startActivity(new Intent(getActivity(), GameDetails.class));
                 break;
             case R.id.dataVis:
                 break;

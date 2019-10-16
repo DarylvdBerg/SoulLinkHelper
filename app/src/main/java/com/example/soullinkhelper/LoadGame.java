@@ -50,10 +50,14 @@ public class LoadGame extends AppCompatActivity {
         buttonStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String gameID = gameDAO.getGameIdByName(((Spinner)findViewById(R.id.spinnerAllGames)).getSelectedItem().toString().toLowerCase());
+                String gameName = ((Spinner)findViewById(R.id.spinnerAllGames)).getSelectedItem().toString();
+                String gameID = gameDAO.getGameIdByName(gameName.toLowerCase());
+
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(getString(R.string.game_id), gameID);
-                editor.commit();
+                editor.apply();
+
+                GameManager.getInstance().setGameName(gameName);
                 switchIntent(gameID);
             }
         });
@@ -64,7 +68,7 @@ public class LoadGame extends AppCompatActivity {
                 String gameID = ((EditText)findViewById(R.id.editTextAddGame)).getText().toString();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(getString(R.string.game_id), gameID);
-                editor.commit();
+                editor.apply();
                 FirebaseService.getFirebaseServiceInstance().getGame(gameID, gameDAO);
                 switchIntent(gameID);
             }
@@ -74,7 +78,6 @@ public class LoadGame extends AppCompatActivity {
     private void switchIntent(String gameID){
         GameManager.getInstance().setGameID(gameID);
         Intent mainActivityIntent = new Intent(LoadGame.this, MainActivity.class);
-        mainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(mainActivityIntent);
     }
 }

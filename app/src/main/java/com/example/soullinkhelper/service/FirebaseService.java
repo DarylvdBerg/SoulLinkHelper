@@ -16,7 +16,6 @@ import com.example.soullinkhelper.models.PairManager;
 import com.example.soullinkhelper.models.Player;
 import com.example.soullinkhelper.models.PlayerManager;
 import com.example.soullinkhelper.models.Pokemon;
-import com.example.soullinkhelper.utils.ToastMaker;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

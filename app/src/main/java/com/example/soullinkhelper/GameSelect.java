@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.soullinkhelper.models.GameManager;
+import com.example.soullinkhelper.utils.ToastMaker;
 
 public class GameSelect extends AppCompatActivity {
 
@@ -51,6 +52,8 @@ public class GameSelect extends AppCompatActivity {
                 if (!sharedPreferences.getString(getString(R.string.game_id), "").equals("")){
                     Intent mainActivityIntent = new Intent(GameSelect.this, MainActivity.class);
                     startActivity(mainActivityIntent);
+                } else {
+                    ToastMaker.makeToast(view.getContext(), "There is no previous game!", 0);
                 }
             }
         });

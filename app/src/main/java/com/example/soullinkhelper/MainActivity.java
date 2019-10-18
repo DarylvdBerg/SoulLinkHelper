@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        RecyclerView rView = findViewById(R.id.links);
+        final RecyclerView rView = findViewById(R.id.links);
 
         rView.setHasFixedSize(true);
         RecyclerView.LayoutManager lManager = new LinearLayoutManager(this);
@@ -52,6 +53,14 @@ public class MainActivity extends AppCompatActivity{
         rView.setAdapter(mAdapter);
 
         getPairsFromFirebase(mAdapter);
+
+        LinearLayout link = findViewById(R.id.linearLayoutPair);
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
 

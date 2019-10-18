@@ -3,10 +3,10 @@ package com.example.soullinkhelper.models;
 import java.util.ArrayList;
 
 public class GameManager {
-    private ArrayList<Game> gameList;
     private static GameManager mInstance;
     private String gameID;
     private String gameName;
+    private ArrayList<Game> gameList;
 
     private GameManager(){
         gameList = new ArrayList<>();

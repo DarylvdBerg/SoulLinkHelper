@@ -45,6 +45,6 @@ public class Pair {
      */
     public void die(int position){
         state = State.DEAD;
-        FirebaseService.getFirebaseServiceInstance().savePair(GameManager.getInstance().getGameName(), this, position);
+        FirebaseService.getFirebaseServiceInstance().savePair(GameManager.getInstance().getGameID(), this, position);
     }
 }

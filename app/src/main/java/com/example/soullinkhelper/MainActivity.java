@@ -18,6 +18,7 @@ import com.example.soullinkhelper.models.GameManager;
 import com.example.soullinkhelper.models.PairManager;
 import com.example.soullinkhelper.models.PlayerManager;
 import com.example.soullinkhelper.service.FirebaseService;
+import com.example.soullinkhelper.utils.ToastMaker;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -54,15 +55,8 @@ public class MainActivity extends AppCompatActivity{
 
         getPairsFromFirebase(mAdapter);
 
-        LinearLayout link = findViewById(R.id.linearLayoutPair);
-        link.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
     }
-
 
     @Override
     protected void onResume(){

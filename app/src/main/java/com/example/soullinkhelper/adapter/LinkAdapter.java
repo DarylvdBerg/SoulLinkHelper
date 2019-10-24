@@ -38,6 +38,7 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
         private TextView caughtRoute;
         private LinearLayout pairLayout;
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             pokemon1 = itemView.findViewById(R.id.pokemon_1);

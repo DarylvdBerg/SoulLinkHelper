@@ -60,10 +60,10 @@ public class GameDetails extends AppCompatActivity {
 
     protected void setupPairPieChart(){
         pairChart = (PieChart) findViewById(R.id.chart);
-        Description description = new Description();
-        description.setText("Resterende Pairs");
-        description.setTextSize(20f);
-        pairChart.setDescription(description);
+        Description d = new Description();
+        d.setText("");
+        d.setTextSize(20f);
+        pairChart.setDescription(d);
         pairChart.setTouchEnabled(false);
         pairChart.setDrawSliceText(true);
         pairChart.getLegend().setEnabled(false);
@@ -75,14 +75,10 @@ public class GameDetails extends AppCompatActivity {
         int aantalPairs = PairManager.getInstance().getPairList().size();
         int maxPairs = getResources().getStringArray(R.array.kantoRoutes).length;
 
-        List<PieEntry> yValues = new ArrayList<>();
-        List<PieEntry> xValues = new ArrayList<>();
+        List<PieEntry> pairValues = new ArrayList<>();
 
-        yValues.add(new PieEntry(aantalPairs, 0));
-        xValues.add(new PieEntry(aantalPairs, "Aantal Pairs"));
-
-        yValues.add(new PieEntry(maxPairs - aantalPairs, 1));
-        xValues.add(new PieEntry(maxPairs - aantalPairs, "Resterende pairs"));
+        pairValues.add(new PieEntry(aantalPairs, "Pairs"));
+        pairValues.add(new PieEntry(maxPairs - aantalPairs, "Remaining Pairs"));
 
         ArrayList<Integer> colors = new ArrayList<>();
         if (aantalPairs <10) {
@@ -96,8 +92,9 @@ public class GameDetails extends AppCompatActivity {
         }
         colors.add(Color.rgb(50,93,255));
 
-        PieDataSet dataSet = new PieDataSet(yValues, "Pairs");
+        PieDataSet dataSet = new PieDataSet(pairValues, "Pairs");
         dataSet.setColors(colors);
+        dataSet.setValueTextSize(20f);
 
         PieData data = new PieData(dataSet);
         pairChart.setData(data);

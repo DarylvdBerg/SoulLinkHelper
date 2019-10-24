@@ -1,11 +1,52 @@
 <resources>
 
+    <!-- Splash Screen Theme. -->
+    <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/splash_screen</item>
+    </style>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Game Manager Screen Theme. -->
+    <style name="GameManagerScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/game_manager_background</item>
+    </style>
+
+    <!-- New Game Screen Theme. -->
+    <style name="NewGameScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/empty_new_game_screen</item>
+    </style>
+
+    <!-- Links Screen Theme. -->
+    <style name="LinksScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/links_background</item>
+    </style>
+
+    <style name="material_button" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">#e8756d</item>
+    </style>
+
+    <style name="linkButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@android:color/black</item>
+    </style>
+
+    <style name="GameDetails" parent="@style/Theme.MaterialComponents.NoActionBar">
+        <item name="android:statusBarColor">#4dcdd6</item>
+    </style>
+
+    <style name="linkPair" parent="@style/Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:statusBarColor">#e8756d</item>
+    </style>
+
+    <style name="routeSpinner" parent="@style/Widget.AppCompat.Spinner">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:strokeColor">@android:color/black</item>
     </style>
 
 </resources>

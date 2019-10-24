@@ -1,6 +1,7 @@
 package com.example.soullinkhelper.models;
 
 import com.example.soullinkhelper.enums.State;
+import com.example.soullinkhelper.service.FirebaseService;
 
 public class Pair {
 
@@ -42,7 +43,8 @@ public class Pair {
     /**
      * Set the Pokemon Pairs state to "DEAD".
      */
-    public void die(){
+    public void die(int position){
         state = State.DEAD;
+        FirebaseService.getFirebaseServiceInstance().savePair(GameManager.getInstance().getGameName(), this, position);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.soullinkhelper.models;
 
+import com.example.soullinkhelper.enums.State;
+
 import java.util.ArrayList;
 
 public class PairManager {
@@ -37,5 +39,15 @@ public class PairManager {
 
     public Pair getPair(int pairIndex){
         return pairList.get(pairIndex);
+    }
+
+    public int getAllLivingPairs(){
+        int allLivingPairs = 0;
+        for (Pair pair : pairList){
+            if (pair.getState().equals(State.ALIVE)){
+                allLivingPairs++;
+            }
+        }
+        return allLivingPairs;
     }
 }

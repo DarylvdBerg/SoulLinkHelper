@@ -72,20 +72,22 @@ public class GameDetails extends AppCompatActivity {
     }
 
     private void setData(){
-        int aantalPairs = PairManager.getInstance().getPairList().size();
+        int allPairs = PairManager.getInstance().getPairList().size();
         int maxPairs = getResources().getStringArray(R.array.kantoRoutes).length;
+        int allLivingPairs = PairManager.getInstance().getAllLivingPairs();
 
         List<PieEntry> pairValues = new ArrayList<>();
 
-        pairValues.add(new PieEntry(aantalPairs, "Pairs"));
-        pairValues.add(new PieEntry(maxPairs - aantalPairs, "Remaining Pairs"));
+        pairValues.add(new PieEntry(allLivingPairs, "Living Pairs"));
+        pairValues.add(new PieEntry(maxPairs - allPairs, "Remaining Pairs"));
+        pairValues.add(new PieEntry(allPairs - allLivingPairs, "Dead Pairs"));
 
         ArrayList<Integer> colors = new ArrayList<>();
-        if (aantalPairs <10) {
+        if (allLivingPairs <10) {
             colors.add(Color.rgb(255,68,77));
-        } else if (aantalPairs < 20){
+        } else if (allLivingPairs < 20){
             colors.add(Color.rgb(255,100,100));
-        } else if  (aantalPairs < 40) {
+        } else if  (allLivingPairs < 40) {
             colors.add(Color.rgb(255,150,150));
         } else {
             colors.add(Color.rgb(67,160,71));

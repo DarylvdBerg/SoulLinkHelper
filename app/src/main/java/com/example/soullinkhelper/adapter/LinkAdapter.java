@@ -1,5 +1,6 @@
 package com.example.soullinkhelper.adapter;
 
+import android.content.Context;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.text.TextUtils;
@@ -18,14 +19,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.soullinkhelper.R;
 import com.example.soullinkhelper.enums.State;
+import com.example.soullinkhelper.interfaces.RecyclerViewLongClicked;
 import com.example.soullinkhelper.models.Pair;
 
 import java.util.ArrayList;
 
 public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
     private ArrayList<Pair> pairArrayList;
+    private Context context;
+    private static RecyclerViewLongClicked listener;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
         private ImageView pokemon1;
         private ImageView pokemon2;
         private TextView pokemonName1;
@@ -41,6 +45,7 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnLongClickListener(this);
             pokemon1 = itemView.findViewById(R.id.pokemon_1);
             pokemon2 = itemView.findViewById(R.id.pokemon_2);
             pokemonName1 = itemView.findViewById(R.id.pokemon_name_1);
@@ -56,11 +61,20 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
             pokemonState = itemView.findViewById(R.id.pokemon_state);
             caughtRoute = itemView.findViewById(R.id.route_caught);
             pairLayout = itemView.findViewById(R.id.linearLayoutPair);
+
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            listener.recyclerViewLongClicked(view, this.getLayoutPosition());
+            return true;
         }
     }
 
-    public LinkAdapter(ArrayList<Pair> pairList){
+    public LinkAdapter(ArrayList<Pair> pairList, Context context, RecyclerViewLongClicked listener){
         this.pairArrayList = pairList;
+        this.context = context;
+        this.listener = listener;
     }
 
     @NonNull

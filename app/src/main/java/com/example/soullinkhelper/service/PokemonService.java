@@ -1,20 +1,11 @@
 package com.example.soullinkhelper.service;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.widget.ProgressBar;
-import android.database.Cursor;
-import android.util.Log;
-
-import android.view.View;
-import android.widget.ProgressBar;
-
 
 import com.example.soullinkhelper.dao.PokemonDAO;
 import com.example.soullinkhelper.database.DatabaseHelper;
-import com.example.soullinkhelper.database.DatabaseInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import me.sargunvohra.lib.pokekotlin.client.PokeApi;
